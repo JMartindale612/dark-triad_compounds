@@ -52,6 +52,16 @@ square_correlation_matrix <- function(x, # Input is a data table
 # Need to test with the Big Five / FFM / HEXACO first
 # Maybe FFNI / EPA / FFMI? Too close maybe
 
+# Mottus (2020) discusses the utility of this work on p. 1182
+
+## FFNI, FFMI, EPA development papers
+
+# Test the convergence between an EPA, FFNI and FFMI prototype developed using the 
+# FFM scores in their original development papers
+# and the actual EPA, FFNI and FFMI scores
+# then somehow replicate that with the Vize paper
+# also check convergence with the psychopathy, narcissism and machiavellianism scores
+
 ## Vize (2020) - The core of the Dark Triad -----
 
 # The "Core" of the Dark Triad: A test of competing hypotheses
@@ -184,4 +194,12 @@ data_flux_trait <- read.csv(url("https://osf.io/7jeg5/download?view_only=f3a2eff
 
 data_flip_state <- read.csv(url("https://osf.io/ej482/download?view_only=f3a2eff968b044a4a136db10875ac3c7"), header = TRUE)
 data_flip_trait <- read.csv(url("https://osf.io/sztq9/download?view_only=f3a2eff968b044a4a136db10875ac3c7"), header = TRUE)
+
+# 4 - Assessment Centre / experiments ----
+
+# Breil (2022) - https://onlinelibrary.wiley.com/doi/epdf/10.1111/peps.12507
+# Interpersonal behavior in assessment center role-play exercises: Investigating structure, consistency, and effectiveness
+# https://osf.io/by5qm/
+# BFI-2-S used
+
 
