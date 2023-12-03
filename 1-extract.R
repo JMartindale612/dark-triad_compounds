@@ -47,6 +47,11 @@ square_correlation_matrix <- function(x, # Input is a data table
   }
 }
 
+
+# 0 - Strategies
+
+# https://onlinelibrary.wiley.com/doi/10.1002/wps.20814
+
 # 1 - B5/FFM/HEXACO - Dark Triad converge -----
 
 # Need to test with the Big Five / FFM / HEXACO first
@@ -62,6 +67,15 @@ square_correlation_matrix <- function(x, # Input is a data table
 # then somehow replicate that with the Vize paper
 # also check convergence with the psychopathy, narcissism and machiavellianism scores
 
+
+
+# Test the relationship between actual Dark Triad scales and normal personality scales found
+# in those big public datasets
+# then make hypotheses based on the literature of what relations you might expect
+# based on the Dark Triad literature (e.g., similar to my thesis)
+# That would be a good study 2
+# Then try some kind of exploratory study with the big ones?
+
 ## Vize (2020) - The core of the Dark Triad -----
 
 # The "Core" of the Dark Triad: A test of competing hypotheses
@@ -70,9 +84,11 @@ square_correlation_matrix <- function(x, # Input is a data table
 
 data_vize <- read.csv(url("https://osf.io/cv74y/download"), header = TRUE)
 
-data1 <- filter(data, Sample_IDr==1)
+data1 <- filter(data_vize, Sample_IDr==1)
 psych::describe(data1[,3:30], fast = T)
 
+
+# data_vize_tibble <- as_tibble(data_vize)
 
 test <- data_vize %>%
   select(ID, Sample_IDr,
@@ -80,6 +96,18 @@ test <- data_vize %>%
          BFI_A:BFI2_trust,
          ipip_a1:ipip_a6,
          ipip_n1:ipip_c6)
+
+view(test)
+
+
+test_tibble <- as_tibble(test)
+
+test_ipip <- test_tibble %>%
+  select(ID, Sample_IDr,
+         ipip_a1:ipip_a6,
+         ipip_n1:ipip_c6)
+
+print(test_ipip)
 
 test <- test %>%
   mutate(
@@ -122,9 +150,8 @@ cormat <- test %>%
          psych_AC:mach) %>%
   square_correlation_matrix()
 
-
-
 # IPIP a2 is straightforwardness, a5 is modesty
+# Where does this come from?
 
 IPIP.DD_model.sub<-'
 #Measurement model  
@@ -137,9 +164,14 @@ IPIP.DD_model.sub<-'
 IPIP.DD_fit.sub<-cfa(IPIP.DD_model.sub, data=data_vize, group="Sample_IDr", estimator="MLM")
 summary(IPIP.DD_fit.sub, standardized=T, fit.measures=T)
 
+# The correlation between these, Vize etc use >.90 as evidence that D is 
+# construct proliferation. Stands to reason that correlation between 2 scales
+# indicates convergence too?
 
 
+# Lee (2020) EPA, LSRP, TriPM & IPIP -----
 
+# https://www-tandfonline-com.manchester.idm.oclc.org/doi/full/10.1080/00223891.2020.1779734
 
 
 
@@ -171,14 +203,18 @@ osf_retrieve_file("cv74y") %>%
 
 
 
-
-
 ## Big Five experimental paper? -----
 
 ## Life outcomes of personality -----
 
 # Seeboth & Mottus (2018) also use this one
 # https://osf.io/d3xb7/
+
+
+
+# Estonian biobank ----
+# https://europepmc.org/article/ppr/ppr456346
+
 
 # 3 - Experience sampling ----
 
@@ -203,3 +239,26 @@ data_flip_trait <- read.csv(url("https://osf.io/sztq9/download?view_only=f3a2eff
 # BFI-2-S used
 
 
+
+
+# 5 Mobile sensor at a psych conference ----
+
+# Genois 
+# https://ps.psychopen.eu/index.php/ps/article/view/9957
+
+
+
+# 6 Video recordings ----
+
+# Rentzsch
+# Used Big 5, didn't use NARQ or NPI
+
+
+# 7 SpeaDY ----
+
+# Wiechers
+# https://ps.psychopen.eu/index.php/ps/article/view/6421
+# https://ps.psychopen.eu/index.php/ps/article/view/8241
+
+
+# https://link.springer.com/article/10.3758/s13428-023-02124-2
